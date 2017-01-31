@@ -1,0 +1,37 @@
+group = 'com.stayrascal.clould.admin'
+version = '1.0.0-SNAPSHOT'
+
+ext {
+    springbootVersion = '2.0.0.BUILD-SNAPSHOT'
+    springAdmin = '1.4.5'
+}
+
+buildscript{
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}"
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile(
+            "de.codecentric:spring-boot-admin-server:$springAdmin",
+            "de.codecentric:spring-boot-admin-server-ui:$springAdmin",
+            "de.codecentric:spring-boot-admin-server-ui-hystrix:$springAdmin",
+    )
+
+    testCompile(
+            "org.springframework.boot:spring-boot-starter-test"
+    )
+}
+
+
+task docker(type: Exec) {
+    commandLine './docker.sh'
+}
