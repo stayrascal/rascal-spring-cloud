@@ -1,0 +1,7 @@
+spring.application.name: api-admin
+
+server.tomcat.accesslog:
+  enabled: true
+  directory: /apps/boot/logs
+
+logging.config: config/logback.xml
