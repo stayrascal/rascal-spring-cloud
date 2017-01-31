@@ -1,13 +1,19 @@
-apply plugin: 'java'
-apply plugin: 'idea'
-
 repositories {
     jcenter()
     mavenLocal()
 }
 
-dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.21'
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'groovy'
 
-    testCompile 'junit:junit:4.12'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
+    repositories {
+//        maven { url 'http://127.0.0.1:8081/nexus/content/groups/public' }
+        mavenLocal()
+        jcenter()
+    }
 }

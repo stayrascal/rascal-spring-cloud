@@ -1,0 +1,32 @@
+group = 'com.stayrascal.clould.gateway'
+version = '1.0.0-SNAPSHOT'
+
+buildscript{
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT'
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile(
+            'org.springframework.cloud:spring-cloud-starter-consul',
+            'org.springframework.cloud:spring-cloud-starter-consul-discovery',
+            'org.springframework.cloud:spring-cloud-starter-zuul',
+    )
+
+    testCompile(
+            "org.springframework.boot:spring-boot-starter-test"
+    )
+}
+
+
+task docker(type: Exec) {
+    commandLine './docker.sh'
+}
