@@ -1,0 +1,22 @@
+spring.application.name: api-provider
+
+server.tomcat.accesslog:
+  enabled: true
+  directory: /apps/boot/logs
+
+logging.config: config/logback.xml
+
+spring.boot.admin.url: http://api-admin:8080
+
+spring.zipkin.base-url: http://zipkin-query:9411/
+
+spring:
+  cloud:
+    consul:
+      host: consul-server
+      port: 8500
+      enabled: true
+      discovery:
+        register: true
+        serviceName: api-provider
+        instanceId: id-${random.value}
