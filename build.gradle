@@ -3,6 +3,12 @@ repositories {
     mavenLocal()
 }
 
+ext {
+    springbootVersion = '2.0.0.BUILD-SNAPSHOT'
+//    springbootVersion = '1.4.3.RELEASE'
+    springAdmin = '1.4.5'
+}
+
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'java'

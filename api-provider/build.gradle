@@ -1,9 +1,9 @@
 group = 'com.stayrascal.clould.provider'
 version = '1.0.0-SNAPSHOT'
 
-ext {
-    springbootVersion = '2.0.0.BUILD-SNAPSHOT'
-}
+//ext {
+//    springbootVersion = '2.0.0.BUILD-SNAPSHOT'
+//}
 
 buildscript{
     repositories {
