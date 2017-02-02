@@ -1,18 +1,21 @@
 group = 'com.stayrascal.clould.provider'
 version = '1.0.0-SNAPSHOT'
 
-//ext {
-//    springbootVersion = '2.0.0.BUILD-SNAPSHOT'
-//}
+buildscript {
 
-buildscript{
-    repositories {
-        mavenLocal()
-        jcenter()
+    ext {
+//        springbootVersion = '2.0.0.BUILD-SNAPSHOT'
+        springbootVersion = '1.4.3.RELEASE'
+        springAdmin = '1.4.5'
     }
 
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
     }
 }
 
@@ -28,7 +31,7 @@ dependencies {
             'org.springframework.cloud:spring-cloud-netflix-core',
             'org.springframework.cloud:spring-cloud-starter-sleuth',
             'org.springframework.cloud:spring-cloud-sleuth-zipkin',
-            'de.codecentric:spring-boot-admin-starter-client',
+            "de.codecentric:spring-boot-admin-starter-client:${springAdmin}",
 
     )
     testCompile(
@@ -36,6 +39,11 @@ dependencies {
     )
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR4"
+    }
+}
 
 task docker(type: Exec) {
     commandLine './docker.sh'

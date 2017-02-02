@@ -1,14 +1,20 @@
 group = 'com.stayrascal.clould.gateway'
 version = '1.0.0-SNAPSHOT'
 
-buildscript{
-    repositories {
-        mavenLocal()
-        jcenter()
+buildscript {
+
+    ext {
+//        springbootVersion = '2.0.0.BUILD-SNAPSHOT'
+        springbootVersion = '1.4.3.RELEASE'
     }
 
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
     }
 }
 
@@ -26,6 +32,11 @@ dependencies {
     )
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR4"
+    }
+}
 
 task docker(type: Exec) {
     commandLine './docker.sh'
