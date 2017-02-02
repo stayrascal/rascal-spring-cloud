@@ -1,4 +1,4 @@
-group = 'com.stayrascal.clould.gateway'
+group = 'com.stayrascal.clould'
 version = '1.0.0-SNAPSHOT'
 
 buildscript {
