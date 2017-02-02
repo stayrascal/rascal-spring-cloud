@@ -1,0 +1,131 @@
+version: '1'
+
+services:
+  consul-server:
+    image: consul
+    container_name: consul-server
+    ports:
+      - 8500:8500
+
+  api-admin:
+    image: stayrascal/api-admin
+    container_name: api-admin
+    ports:
+      - 11000:8080
+    command: ["./run.sh"]
+
+  api-provider1:
+    image: stayrascal/api-provider
+    container_name: api-provider1
+    ports:
+      - 10000:8080
+    volumes:
+      - ./api-provider/config:/apps/boot/config
+    command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "20", "consul-server:8500", "--", "./run.sh"]
+    depends_on:
+      - consul-server
+
+  api-provider2:
+    image: stayrascal/api-provider
+    container_name: api-provider2
+    ports:
+      - 10001:8080
+    volumes:
+      - ./api-provider/config:/apps/boot/config
+    command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "20", "consul-server:8500", "--", "./run.sh"]
+    depends_on:
+      - consul-server
+
+  api-consumer1:
+    image: stayrascal/api-consumer
+    container_name: api-consumer1
+    ports:
+      - 9000:9000
+    volumes:
+      - ./api-consumer/config:/apps/boot/config
+    command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "20", "consul-server:8500", "--", "./run.sh"]
+    depends_on:
+      - consul-server
+
+  api-gateway:
+    image: stayrascal/api-gateway
+    container_name: api-gateway
+    ports:
+      - 20000:8080
+    command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "15", "consul-server:8500", "--", "./run.sh"]
+    depends_on:
+      - consul-server
+
+  elasticsearch:
+    image: elasticsearch
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - ES_JAVA_OPTS=-Xmx512m -Xms512m
+
+  logstash:
+    image: logstash
+    container_name: logstash
+    volumes:
+      - ./logstash:/apps/config
+    ports:
+      - 5044:5044
+    command: ["logstash", "-f", "/apps/config/logstatsh.conf"]
+
+  kibana:
+    image: kibana
+    container_name: kibana
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+
+  zipkin-storage:
+    image: openzipkin/zipkin-cassandra:1.40.1
+    container_name: zipkin-cassandra
+    ports:
+      - 9042:9042
+
+  # The query process services the UI, and also exposes a POST endpoint that
+  # instrumentation can send trace data to.
+  zipkin-query:
+    image: openzipkin/zipkin-query:1.40.1
+    container_name: zipkin-query
+    environment:
+      # Remove TRANSPORT_TYPE to disable tracing
+      - TRANSPORT_TYPE=http
+      - STORAGE_TYPE=cassandra
+      # Point the query service at the storage backend
+      - CASSANDRA_CONTACT_POINTS=zipkin-cassandra
+    ports:
+      # The http api is mounted at /api/v1
+      - 9411:9411
+      # Admin interface is under the http path /admin
+      # https://twitter.github.io/twitter-server/Features.html#http-admin-interface
+      - 9901:9901
+    depends_on:
+      - zipkin-storage
+
+  zipkin-web:
+    image: openzipkin/zipkin-web:1.40.1
+    environment:
+      # Remove TRANSPORT_TYPE to disable tracing
+      - TRANSPORT_TYPE=http
+      # Point the web service at the query backend
+      - QUERY_ADDR=zipkin-query:9411
+    ports:
+      # Web UI is mounted at the root, and the http api under /api/v1
+      - 8080:8080
+      # Admin interface is under the http path /admin
+      # https://twitter.github.io/twitter-server/Features.html#http-admin-interface
+      - 9990:9990
+
+  grafana:
+      image: grafana/grafana
+      container_name: grafana
+      ports:
+        - 3000:3000
+      environment:
+        - GF_SECURITY_ADMIN_PASSWORD=123
