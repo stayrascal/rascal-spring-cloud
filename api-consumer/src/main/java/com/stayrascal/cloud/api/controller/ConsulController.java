@@ -34,37 +34,37 @@ public class ConsulController {
      * Choose a service from all the services
      */
     @RequestMapping("/discover")
-    public String discover(){
+    public String discover() {
         return loadBalancerClient.choose("api-provider").getUri().toString();
     }
 
     @RequestMapping("/services")
-    public Object services(){
+    public Object services() {
         return discoveryClient.getInstances("api-provider");
     }
 
     @RequestMapping(value = "/call", produces = "application/json")
-    public String call(){
+    public String call() {
         return apiProviderDao.getInfo();
     }
 
     @RequestMapping(value = "/call/ip", produces = "application/json")
-    public String callIp(){
+    public String callIp() {
         return apiProviderDao.getIp();
     }
 
     @RequestMapping(value = "/call/error", produces = "application/json")
-    public String triggerError(){
+    public String triggerError() {
         return apiProviderDao.triggerError();
     }
 
     @RequestMapping(value = "/call1", produces = "application/json")
-    public String callUsingLoadBalancedRestTemplate(){
+    public String callUsingLoadBalancedRestTemplate() {
         return loadBlanceRestTemplate.getForObject("http://api-provider/info", String.class);
     }
 
     @RequestMapping(value = "/call2", produces = "application/json")
-    public String callUsingRestTemplate(){
+    public String callUsingRestTemplate() {
         return restTemplate.getForObject("http://api-provider/info", String.class);
     }
 }
