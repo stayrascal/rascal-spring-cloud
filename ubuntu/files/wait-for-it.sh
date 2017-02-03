@@ -65,8 +65,7 @@ wait_for_wrapper()
 while [[ $# -gt 0 ]]
 do
     case "$1" in
-
-        *:*)
+        *:* )
         hostport=(${1//:/ })
         HOST=${hostport[0]}
         PORT=${hostport[1]}
@@ -132,7 +131,7 @@ do
         ;;
 
         *)
-        echoerr "Unknown arguments: $1"
+        echoerr "Unknown argument: $1"
         usage
         ;;
     esac
