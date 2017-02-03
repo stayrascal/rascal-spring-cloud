@@ -1,10 +1,10 @@
-version: '1'
+version: '2'
 
-services:
+services: 
   consul-server:
     image: consul
     container_name: consul-server
-    ports:
+    ports: 
       - 8500:8500
 
   api-admin:
@@ -19,10 +19,10 @@ services:
     container_name: api-provider1
     ports:
       - 10000:8080
-    volumes:
+    volumes: 
       - ./api-provider/config:/apps/boot/config
     command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "20", "consul-server:8500", "--", "./run.sh"]
-    depends_on:
+    depends_on: 
       - consul-server
 
   api-provider2:
@@ -30,10 +30,10 @@ services:
     container_name: api-provider2
     ports:
       - 10001:8080
-    volumes:
+    volumes: 
       - ./api-provider/config:/apps/boot/config
     command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "20", "consul-server:8500", "--", "./run.sh"]
-    depends_on:
+    depends_on: 
       - consul-server
 
   api-consumer1:
@@ -41,20 +41,20 @@ services:
     container_name: api-consumer1
     ports:
       - 9000:9000
-    volumes:
+    volumes: 
       - ./api-consumer/config:/apps/boot/config
     command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "20", "consul-server:8500", "--", "./run.sh"]
-    depends_on:
+    depends_on: 
       - consul-server
 
-  api-gateway:
-    image: stayrascal/api-gateway
-    container_name: api-gateway
-    ports:
-      - 20000:8080
-    command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "15", "consul-server:8500", "--", "./run.sh"]
-    depends_on:
-      - consul-server
+#   api-gateway:
+#     image: stayrascal/api-gateway
+#     container_name: api-gateway
+#     ports:
+#       - 20000:8080
+#     command: ["/apps/docker/wait-for-it.sh", "-s", "-t", "15", "consul-server:8500", "--", "./run.sh"]
+#     depends_on: 
+#       - consul-server
 
   elasticsearch:
     image: elasticsearch
@@ -68,18 +68,19 @@ services:
   logstash:
     image: logstash
     container_name: logstash
-    volumes:
+    volumes: 
       - ./logstash:/apps/config
-    ports:
+    ports: 
       - 5044:5044
-    command: ["logstash", "-f", "/apps/config/logstatsh.conf"]
-
+    command: ["logstash", "-f", "/apps/config/logstash.conf"]
+    
+  
   kibana:
     image: kibana
     container_name: kibana
     ports:
       - 5601:5601
-    depends_on:
+    depends_on: 
       - elasticsearch
 
   zipkin-storage:
@@ -123,9 +124,9 @@ services:
       - 9990:9990
 
   grafana:
-      image: grafana/grafana
-      container_name: grafana
-      ports:
-        - 3000:3000
-      environment:
-        - GF_SECURITY_ADMIN_PASSWORD=123
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    environment: 
+      - GF_SECURITY_ADMIN_PASSWORD=123
