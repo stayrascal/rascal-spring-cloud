@@ -27,6 +27,7 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-actuator',
             'org.springframework.boot:spring-boot-starter-data-neo4j',
+            'org.springframework.boot:spring-boot-starter-data-rest',
             'org.springframework.cloud:spring-cloud-starter-consul',
             'org.springframework.cloud:spring-cloud-starter-consul-discovery',
             'org.springframework.cloud:spring-cloud-netflix-core',
