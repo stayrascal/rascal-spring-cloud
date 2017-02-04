@@ -1,5 +1,7 @@
 package com.stayrascal.api.users.model.nodes;
 
+import com.stayrascal.api.users.model.rels.Action;
+
 import java.util.Set;
 
 public class User {
