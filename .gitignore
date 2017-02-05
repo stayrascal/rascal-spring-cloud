@@ -1,6 +1,9 @@
 .gradle/
 .idea/
 gradle/
+*/build/
+build/
 *.ipr
 *.iws
+*.iml
 *.tar.gz
