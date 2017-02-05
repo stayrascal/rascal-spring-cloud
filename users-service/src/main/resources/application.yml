@@ -1,6 +1,6 @@
 spring:
   data:
     neo4j:
-      uri: bolt://localhost
+      uri: http://neo4j:stayrascal@localhost:7474
       username: neo4j
       password: stayrascal
