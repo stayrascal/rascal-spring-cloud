@@ -3,3 +3,4 @@ spring:
     neo4j:
       driver: org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver
 
+# git@github.com:neo4j-examples/movies-java-spring-data-neo4j-4.git
