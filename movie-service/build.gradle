@@ -1,0 +1,53 @@
+group = 'com.stayrascal.api'
+version = '1.0.0-SNAPSHOT'
+
+buildscript {
+
+    ext {
+//        springbootVersion = '2.0.0.BUILD-SNAPSHOT'
+        springbootVersion = '1.4.3.RELEASE'
+        springAdmin = '1.4.5'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+
+    compile(
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.boot:spring-boot-starter-data-neo4j',
+            'org.springframework.boot:spring-boot-starter-data-rest',
+            'org.springframework.cloud:spring-cloud-starter-consul',
+            'org.springframework.cloud:spring-cloud-starter-consul-discovery',
+            'org.springframework.cloud:spring-cloud-netflix-core',
+            'org.springframework.cloud:spring-cloud-starter-sleuth',
+            'org.springframework.cloud:spring-cloud-sleuth-zipkin',
+            "de.codecentric:spring-boot-admin-starter-client:${springAdmin}",
+//            'org.springframework.data:spring-data-neo4j'
+
+    )
+    testCompile(
+            "org.springframework.boot:spring-boot-starter-test"
+    )
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR4"
+    }
+}
+
+task docker(type: Exec) {
+    commandLine './docker.sh'
+}
