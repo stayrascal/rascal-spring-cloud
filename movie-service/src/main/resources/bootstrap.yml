@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: movie-service
+  cloud:
+    config:
+      uri: http://configserver:8888
+encrypt:
+  fail-on-error: false
