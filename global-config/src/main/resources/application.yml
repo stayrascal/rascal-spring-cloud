@@ -1,0 +1,17 @@
+server:
+  port: 8888
+eureka:
+  instance:
+    hostname: configserver
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/stayrascal/spring-boot-microservice-config
+
