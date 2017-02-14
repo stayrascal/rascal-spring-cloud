@@ -1,0 +1,31 @@
+server:
+  port: 8000
+
+ribbon:
+  ServerListRefreshInterval: 1000
+
+endpoints:
+  shutdown:
+    enabled: true
+  restart:
+    enabled: true
+  health:
+    enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.consul: debug
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://discovery:${server.port}/eureka/
+
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+
