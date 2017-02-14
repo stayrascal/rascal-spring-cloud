@@ -1,21 +1,19 @@
-spring:
-  application:
-    name: api-gateway
-  cloud:
-    config:
-      url: http://configserver:8888
-    consul:
-      host: consul-server
-      port: 8500
-      enabled: true
-      discovery:
-        register: false
+eureka:
+  instance:
+    hostname: gateway
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+
 zuul:
   routes:
     api-provider: /api-provider/**
 
 server:
   port: 10000
+
 sidecar:
   port: 8000
 
@@ -26,15 +24,4 @@ endpoints:
     enabled: true
   health:
     enabled: true
-
-eureka:
-  instance:
-    hostname: api-gateway
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
-
-
 

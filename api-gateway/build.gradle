@@ -26,6 +26,7 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-consul-discovery',
             'org.springframework.cloud:spring-cloud-starter-zuul',
             'org.springframework.cloud:spring-cloud-netflix-sidecar',
+            'org.springframework.cloud:spring-cloud-starter-eureka',
     )
 
     testCompile(
