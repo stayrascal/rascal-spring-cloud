@@ -1,0 +1,42 @@
+group = 'com.stayrascal.clould'
+version = '1.0.0-SNAPSHOT'
+
+buildscript {
+
+    ext {
+//        springbootVersion = '2.0.0.BUILD-SNAPSHOT'
+        springbootVersion = '1.4.3.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile(
+            'org.springframework.cloud:spring-cloud-config-server',
+            'org.springframework.cloud:spring-cloud-starter-eureka',
+    )
+
+    testCompile(
+            "org.springframework.boot:spring-boot-starter-test"
+    )
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR4"
+    }
+}
+
+task docker(type: Exec) {
+    commandLine './docker.sh'
+}
