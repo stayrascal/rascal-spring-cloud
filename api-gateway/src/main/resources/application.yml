@@ -2,6 +2,8 @@ spring:
   application:
     name: api-gateway
   cloud:
+    config:
+      url: http://configserver:8888
     consul:
       host: consul-server
       port: 8500
@@ -11,4 +13,28 @@ spring:
 zuul:
   routes:
     api-provider: /api-provider/**
+
+server:
+  port: 10000
+sidecar:
+  port: 8000
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    enabled: true
+
+eureka:
+  instance:
+    hostname: api-gateway
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+
+
 
