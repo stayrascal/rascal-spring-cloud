@@ -9,4 +9,5 @@ include 'api-gateway',
         'consul-service',
         'discovery-service',
         'hystrix-dashboard',
-        'recommendation-service'
+        'recommendation-service',
+        'movie-ui'
