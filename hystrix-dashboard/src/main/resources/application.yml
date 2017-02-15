@@ -1,0 +1,34 @@
+info:
+  component: Hystrix Dashboard
+endpoints:
+  shutdown:
+    enabled: true
+  restart:
+    enabled: true
+server:
+  port: 7979
+logging:
+  level:
+    ROOT: info
+    org.springframework.web: debug
+
+eureka:
+  client:
+    # Region where eureka is deployed - For AWS specify one if the AWS regions, for other datacenters specify a arbitrary string indicating the region. This is normally specified as a -D optoion (eg) -Deureka.region=us-east-1
+    region: default
+
+    # For eureka clients running in eureka server, it needs to connect servers in other zones
+    perferSameZone: false
+
+    # Change this if you want to use a DNS based lookup fir determining other eureka servers.
+    # For example of specifying the DNS entries, check the eureka-client-test.properties, eureka-client-prod.properties
+    # shouldUseDns: false
+
+    us-east-1:
+      availabilityZonnes: default
+
+  instance:
+    # Virtual host name by which the clients identifies this service
+    virtualHostName: ${spring.applicaiton.name}
+
+
