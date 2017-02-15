@@ -1,2 +1,12 @@
 rootProject.name = 'rascal-spring-cloud'
-include 'api-gateway', 'api-admin', 'api-provider', 'api-consumer', 'users-service', 'movie-service', 'global-config', 'consul-service', 'discovery-service', 'hystrix-dashboard'
+include 'api-gateway',
+        'api-admin',
+        'api-provider',
+        'api-consumer',
+        'users-service',
+        'movie-service',
+        'global-config',
+        'consul-service',
+        'discovery-service',
+        'hystrix-dashboard',
+        'recommendation-service'
