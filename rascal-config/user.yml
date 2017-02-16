@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: cloud
+---
+spring:
+  profiles: cloud
+  jpg:
+    shou_sql: false
+    database: postgres
+    hibernate:
+      ddl-auto: none
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:
+    instance:
+      hostname:
+      nonSecurePort: 80
