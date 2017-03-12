@@ -17,7 +17,7 @@ spring:
       server:
         git:
           uri: https://github.com/stayrascal/rascal-spring-cloud
-          search-paths: rascal-config
+          search-paths: rascal-config/demo
           username: stayrascal
           password: rascal142857
 

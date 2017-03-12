@@ -6,3 +6,4 @@ spring:
       uri: http://configserver:8888
 encrypt:
   fail-on-error: false
+
