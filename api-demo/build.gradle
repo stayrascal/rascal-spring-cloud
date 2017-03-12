@@ -25,6 +25,7 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-eureka',
             'org.springframework.cloud:spring-cloud-starter-config',
             'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-actuator',
     )
 
     testCompile(
