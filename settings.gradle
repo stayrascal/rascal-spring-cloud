@@ -11,4 +11,5 @@ include 'api-gateway',
         'hystrix-dashboard',
         'recommendation-service',
         'movie-ui',
-        'ribbon-test'
+        'ribbon-test',
+        'api-demo'

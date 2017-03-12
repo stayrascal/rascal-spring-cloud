@@ -1,4 +1,4 @@
-package com.stayrascal.cloud.api.config.resource;
+package com.stayrascal.cloud.api.demo.resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
