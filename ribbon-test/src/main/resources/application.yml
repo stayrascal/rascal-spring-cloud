@@ -1,19 +1,19 @@
 server:
-  port: 8887
+  port: 3333
 eureka:
   instance:
     hostname: localhost
-#    hostname: configserver
+#    hostname: ribbonsever
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
 #      defaultZone: http://discovery:8761/eureka/
-#spring:
-#  cloud:
-#    config:
-#      server:
-#        git:
-#          uri: https://github.com/stayrascal/spring-boot-microservice-config
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/stayrascal/spring-boot-microservice-config
 

@@ -4,10 +4,11 @@ eureka:
   instance:
     hostname: discovery
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: false # forbidden register itself
+    fetch-registry: false # forbidden register itself
     service-url:
-      defaultzone: http://discovery:${server.port}/eureka/
+#      defaultzone: http://discovery:${server.port}/eureka/
+      defaultzone: http://localhost:${server.port}/eureka/
 spring:
   cloud:
     config:
