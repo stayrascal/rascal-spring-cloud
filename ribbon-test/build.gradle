@@ -25,6 +25,7 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-ribbon',
             'org.springframework.cloud:spring-cloud-starter-eureka',
             'org.springframework.cloud:spring-cloud-starter-feign',
+            'org.springframework.cloud:spring-cloud-starter-hystrix',
             'org.springframework.boot:spring-boot-starter-web',
     )
 
