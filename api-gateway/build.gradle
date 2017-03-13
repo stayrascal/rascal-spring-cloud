@@ -22,8 +22,8 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile(
-            'org.springframework.cloud:spring-cloud-starter-consul',
-            'org.springframework.cloud:spring-cloud-starter-consul-discovery',
+//            'org.springframework.cloud:spring-cloud-starter-consul',
+//            'org.springframework.cloud:spring-cloud-starter-consul-discovery',
             'org.springframework.cloud:spring-cloud-starter-zuul',
             'org.springframework.cloud:spring-cloud-netflix-sidecar',
             'org.springframework.cloud:spring-cloud-starter-eureka',
