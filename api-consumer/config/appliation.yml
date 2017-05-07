@@ -11,13 +11,3 @@ logging.config: config/logback.xml
 spring.boot.admin.url: http://api-admin:8080
 
 spring.zipkin.base-url: http://zipkin-query:9411/
-
-spring:
-  cloud:
-    consul:
-      host: consul-server
-      port: 8500
-      discovery:
-        register: false
-        serviceName: api-provider
-        instanceId: id-${random.value}

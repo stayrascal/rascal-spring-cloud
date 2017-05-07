@@ -9,6 +9,7 @@ public class RestTemplateConfiguration {
 
     @Bean
     public RestTemplate restTemplate(){
+        System.out.println("\n\n\n\n\n==============Create RestTemplate=========");
         return new RestTemplate();
     }
 }

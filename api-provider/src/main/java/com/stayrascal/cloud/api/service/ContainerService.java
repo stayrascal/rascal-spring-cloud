@@ -12,8 +12,8 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 @Service
-public class Containerservice {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Containerservice.class);
+public class ContainerService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ContainerService.class);
 
     @Autowired
     private DiscoveryClient discoveryClient;

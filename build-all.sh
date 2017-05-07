@@ -6,10 +6,10 @@ cd $(dirname $0)
 ./gradlew clean build
 
 # Build base ubuntu
-./ubuntu/docker.sh
+# ./ubuntu/docker.sh
 
 # Build docker base image
-./base-image/docker.sh
+# ./base-image/docker.sh
 
 # Build api-provider image
 ./api-provider/docker.sh
@@ -27,4 +27,5 @@ cd $(dirname $0)
 ./global-config/docker.sh
 
 # Clean docker dangling images
+docker rm $(docker ps -q -f status=exited)
 docker rmi $(docker images -f "dangling=true" -q)

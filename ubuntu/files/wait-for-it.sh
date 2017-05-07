@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cmdname=$(basename $0)
 
@@ -71,65 +71,53 @@ do
         PORT=${hostport[1]}
         shift 1
         ;;
-
         --child)
         CHILD=1
         shift 1
         ;;
-
         -q | --quiet)
         QUIET=1
         shift 1
         ;;
-
         -s | --strict)
         STRICT=1
         shift 1
         ;;
-
         -h)
         HOST="$2"
         if [[ $HOST == "" ]]; then break; fi
         shift 2
         ;;
-
         --host=*)
         HOST="${1#*=}"
         shift 1
         ;;
-
         -p)
         PORT="$2"
         if [[ $PORT == "" ]]; then break; fi
         shift 2
         ;;
-
         --port=*)
         PORT="${1#*=}"
         shift 1
         ;;
-
         -t)
         TIMEOUT="$2"
         if [[ $TIMEOUT == "" ]]; then break; fi
         shift 2
         ;;
-
         --timeout=*)
         TIMEOUT="${1#*=}"
         shift 1
         ;;
-
         --)
         shift
         CLI="$@"
         break
         ;;
-
         --help)
         usage
         ;;
-
         *)
         echoerr "Unknown argument: $1"
         usage

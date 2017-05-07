@@ -3,7 +3,6 @@ package com.stayrascal.cloud.api.controller;
 import com.stayrascal.cloud.api.dao.ApiProviderDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,11 +22,11 @@ public class ConsulController {
     private ApiProviderDao apiProviderDao;
 
     @Autowired
-    @LoadBalanced
-    private RestTemplate loadBlanceRestTemplate;
+//    @LoadBalanced
+    private RestTemplate loadBalanceRestTemplate;
 
     @Autowired
-    @LoadBalanced
+//    @LoadBalanced
     private RestTemplate restTemplate;
 
     /**
@@ -60,7 +59,7 @@ public class ConsulController {
 
     @RequestMapping(value = "/call1", produces = "application/json")
     public String callUsingLoadBalancedRestTemplate() {
-        return loadBlanceRestTemplate.getForObject("http://api-provider/info", String.class);
+        return loadBalanceRestTemplate.getForObject("http://api-provider/info", String.class);
     }
 
     @RequestMapping(value = "/call2", produces = "application/json")

@@ -25,6 +25,7 @@ dependencies {
 
     compile(
             'com.vaadin:vaadin-spring-boot-starter:1.2.0',
+            'org.springframework.boot:spring-boot-starter-hateoas',
             'org.springframework.cloud:spring-cloud-starter-feign',
             'org.springframework.cloud:spring-cloud-starter-zuul',
             'org.springframework.cloud:spring-cloud-starter-eureka',

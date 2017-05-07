@@ -3,7 +3,7 @@ MAINTAINER stayrascal
 
 WORKDIR /apps
 
-COPY files/jdk-8u111-linux-x64.tar.gz /apps/docker/java8.tar.gz
+COPY files/jdk-8u131-linux-x64.tar.gz /apps/docker/java8.tar.gz
 COPY files/filebeat-5.2.0-linux-x86_64.tar.gz /apps/docker/filebeat.tgz
 
 ENV JAVA_HOME /apps/java8

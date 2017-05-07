@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/bash
 
 /apps/filebeat/filebeat -c /apps/boot/config/filebeat.yml &
 

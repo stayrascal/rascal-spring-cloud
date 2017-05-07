@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    consul:
+      host: consul-server
+      port: 8500
+      discovery:
+        register: false
+        serviceName: api-consumer
+        instanceId: id-${random.value}

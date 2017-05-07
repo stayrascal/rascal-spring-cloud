@@ -10,10 +10,30 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 #      defaultZone: http://discovery:8761/eureka/
+
 spring:
   cloud:
     config:
       server:
         git:
           uri: https://github.com/stayrascal/spring-boot-microservice-config
+    loadbalancer:
+      retry:
+        enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+DEMO:
+  ribbon:
+    ConnectTimeout: 250
+    ReadTimeout: 1000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetriesNextServer: 2
+    MaxAutoRetries: 1
 
