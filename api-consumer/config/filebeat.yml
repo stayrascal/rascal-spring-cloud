@@ -10,8 +10,8 @@ filebeat.prospectors:
 fields:
   application: api-consumer
 
-# output.elasticsearch:
-#   hosts: ["elasticsearch:9200"]
+ output.elasticsearch:
+   hosts: ["elasticsearch:9200"]
 
 output.logstash:
   hosts: ["logstash:5044"]
